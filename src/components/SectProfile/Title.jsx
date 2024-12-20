@@ -4,7 +4,7 @@ export default function Title() {
     return(
         <div className="px-7 pt-10">
             <Paragraf 
-            text="DAMER - OUTLET BERKAH MAJU SEMPURNA - BANTUL"
+            text="DILLO - BANTUL"
             bold="font-bold"
             />
 

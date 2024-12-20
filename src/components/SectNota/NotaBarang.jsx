@@ -30,7 +30,7 @@ export default function NotaBarang() {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 mx-3">
             <table className="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-gray-100 text-left">

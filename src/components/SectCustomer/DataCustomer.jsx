@@ -4,7 +4,7 @@ export default function DataCustomer() {
     return(
         <>
             <div className="px-7 mt-6 w-full">
-                <div className="mb-20">
+                <div className="mb-3">
                     <table className="">
                         <TrTable 
                         text="KM Kendaraan"
