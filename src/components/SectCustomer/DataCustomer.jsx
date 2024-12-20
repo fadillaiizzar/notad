@@ -3,33 +3,14 @@ import TrTable from "./TrTable";
 export default function DataCustomer() {
     return(
         <>
-            <div className="px-7 mt-6 grid grid-cols-3">
-                <div>
-                    <table>
-                        <TrTable 
-                        text="No. Faktur"
-                        defaultText=""
-                        />
-
-                        <TrTable 
-                        text="Pembayaran"
-                        defaultText=""
-                        />
-
+            <div className="px-7 mt-6 w-full">
+                <div className="mb-20">
+                    <table className="">
                         <TrTable 
                         text="KM Kendaraan"
                         defaultText=""
                         />
 
-                        <TrTable 
-                        text="No. SPK"
-                        defaultText=""
-                        />
-                    </table>
-                </div>
-
-                <div>
-                    <table>
                         <TrTable 
                         text="Customer"
                         defaultText=""
@@ -41,31 +22,7 @@ export default function DataCustomer() {
                         />
 
                         <TrTable 
-                        text="Est. Selesai"
-                        defaultText=""
-                        /> 
-                        
-                        <TrTable 
-                        text="Teknisi"
-                        defaultText=""
-                        />
-                    </table>
-                </div>
-
-                <div>
-                    <table>
-                        <TrTable 
                         text="Tanggal"
-                        defaultText=""
-                        />
-
-                        <TrTable 
-                        text="Operator"
-                        defaultText=""
-                        />
-
-                        <TrTable
-                        text="Selesai"
                         defaultText=""
                         />
                     </table>

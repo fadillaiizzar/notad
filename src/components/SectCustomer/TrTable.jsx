@@ -5,18 +5,18 @@ export default function TrTable(props) {
     const [ hasiltext , setHasiltext ] = useState(defaultText);
 
     return(
-        <tr>
-            <td className="w-2/5 pl-0 pr-4">
+        <tr className="flex items-center">
+            <td className="w-[180px] h-9 flex justify-start items-center">
                 <label className="cursor-pointer" htmlFor={text}>{text}</label>
             </td>
-            <td className="w-[5px]">:</td>
-            <td className="w-3/5 px-4">
+            <td className="w-[10px] h-9 flex justify-center items-center pb-3">:</td>
+            <td className="w-[320px] px-4 flex justify-end items-end">
                 <input 
                     type="text"
                     id={text}
                     value={hasiltext}
                     onChange={(e) => setHasiltext(e.target.value)}
-                    className="rounded px-2 py-1 w-full">
+                    className="px-2 w-full h-9">
                 </input>
             </td>
         </tr>
