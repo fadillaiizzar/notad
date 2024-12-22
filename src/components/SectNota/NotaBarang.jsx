@@ -34,11 +34,11 @@ export default function NotaBarang() {
             <table className="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-gray-100 text-left">
-                        <th className="border border-gray-300 px-2 py-2 h-12 w-[50px]">No</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12">Sparepart</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12">Jumlah</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12">Harga</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12">Total</th>
+                        <th className="border border-gray-300 px-2 py-2 h-12 w-[2px]">No</th>
+                        <th className="border border-gray-300 px-4 py-2 h-12 w-[500px]">Sparepart</th> {/* Lebar lebih besar */}
+                        <th className="border border-gray-300 px-4 py-2 h-12 w-[100px]">Jumlah</th>   {/* Lebar lebih kecil */}
+                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Harga</th>
+                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,40 +48,32 @@ export default function NotaBarang() {
                                 <input
                                     type="text"
                                     value={row.no}
-                                    onChange={(e) =>
-                                        handleChange(index, "no", e.target.value)
-                                    }
+                                    onChange={(e) => handleChange(index, "no", e.target.value)}
                                     className="w-full px-2 py-1 h-12 rounded text-center"
                                     disabled
                                 />
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9">
+                            <td className="border border-gray-300 px-4 py-2 h-9 w-[250px]">
                                 <input
                                     type="text"
                                     value={row.sparepart}
-                                    onChange={(e) =>
-                                        handleChange(index, "sparepart", e.target.value)
-                                    }
+                                    onChange={(e) => handleChange(index, "sparepart", e.target.value)}
                                     className="w-full px-2 py-1 h-12 rounded"
                                 />
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9">
+                            <td className="border border-gray-300 px-4 py-2 h-9 w-[100px]">
                                 <input
                                     type="text"
                                     value={row.jumlah}
-                                    onChange={(e) =>
-                                        handleChange(index, "jumlah", e.target.value)
-                                    }
-                                    className="w-full px-2 py-1 h-12 rounded"
+                                    onChange={(e) => handleChange(index, "jumlah", e.target.value)}
+                                    className="w-full px-2 py-1 h-12 rounded text-center"
                                 />
                             </td>
                             <td className="border border-gray-300 px-4 py-2 h-9">
                                 <input
                                     type="text"
                                     value={row.harga}
-                                    onChange={(e) =>
-                                        handleChange(index, "harga", e.target.value)
-                                    }
+                                    onChange={(e) => handleChange(index, "harga", e.target.value)}
                                     className="w-full px-2 py-1 h-12 rounded"
                                 />
                             </td>
@@ -96,6 +88,7 @@ export default function NotaBarang() {
                         </tr>
                     ))}
                 </tbody>
+
                 <tfoot>
                     <tr>
                         <td

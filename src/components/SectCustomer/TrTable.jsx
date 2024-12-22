@@ -6,7 +6,7 @@ export default function TrTable(props) {
 
     return(
         <tr className="flex items-center">
-            <td className="w-[180px] h-9 flex justify-start items-center">
+            <td id="customer-name" className="w-[180px] h-9 flex justify-start items-center">
                 <label className="cursor-pointer" htmlFor={text}>{text}</label>
             </td>
             <td className="w-[10px] h-9 flex justify-center items-center pb-3">:</td>
