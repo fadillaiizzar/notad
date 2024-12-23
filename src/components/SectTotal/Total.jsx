@@ -34,83 +34,107 @@ function NotaBarang({ setBarangData }) {
     };
 
     return (
-        <div className="pt-0 pb-8">
-            <table className="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100 text-left">
-                        <th className="border border-gray-300 px-2 py-2 h-12 w-[2px]">No</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[500px]">Sparepart</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[100px]">Jumlah</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Harga</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((row, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
-                            <td className="border border-gray-300 px-2 py-2 h-9">
-                                <input
-                                    type="text"
-                                    value={row.no}
-                                    onChange={(e) => handleChange(index, "no", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded text-center"
-                                    disabled
-                                />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9 w-[250px]">
-                                <input
-                                    type="text"
-                                    value={row.sparepart}
-                                    onChange={(e) => handleChange(index, "sparepart", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded"
-                                />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9 w-[100px]">
-                                <input
-                                    type="text"
-                                    value={row.jumlah}
-                                    onChange={(e) => handleChange(index, "jumlah", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded text-center"
-                                />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9">
-                                <input
-                                    type="text"
-                                    value={row.harga}
-                                    onChange={(e) => handleChange(index, "harga", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded"
-                                />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9">
-                                <input
-                                    type="text"
-                                    value={row.total}
-                                    readOnly
-                                    className="w-full px-2 py-1 h-12 rounded"
-                                />
+        <>
+            <style>
+                {`
+                @media print {
+                    .pdf {
+                        font-size: 0.875rem; /* Set ukuran sama dengan text-sm Tailwind */
+                    }
+
+                    .pdf table {
+                    table-layout: fixed;
+                    width: 100%;
+                    border-collapse: collapse;
+                    }
+
+                    .pdf td, .pdf th {
+                        border: 1px solid #ddd;
+                        vertical-align: middle;
+                        padding: 8px;
+                        line-height: 1.2;
+                    }
+                }
+                `}
+            </style>
+
+            <div className="pt-0 pb-6 pdf">
+                <table className="w-full border-collapse border border-black">
+                    <thead className="my-auto">
+                        <tr className="bg-gray-100 h-6">
+                            <th className="border border-black px-2 w-[30px] pb-3">No</th>
+                            <th className="border border-black px-4 w-[400px] text-left pb-3">Sparepart</th>
+                            <th className="border border-black px-4 w-[100px] text-center pb-3">Jumlah</th>
+                            <th className="border border-black px-4 w-[200px] text-center pb-3">Harga</th>
+                            <th className="border border-black px-4 w-[200px] text-center pb-3">Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {data.map((row, index) => (
+                            <tr key={index}>
+                                <td className="border-r border-black px-2 h-7">
+                                    <input
+                                        type="text"
+                                        value={row.no}
+                                        onChange={(e) => handleChange(index, "no", e.target.value)}
+                                        className="w-full h-full rounded text-center"
+                                        disabled
+                                    />
+                                </td>
+                                <td className="border-r border-black px-2 h-7 w-[250px] border-b-0">
+                                    <input
+                                        type="text"
+                                        value={row.sparepart}
+                                        onChange={(e) => handleChange(index, "sparepart", e.target.value)}
+                                        className="w-full px-2 h-full rounded"
+                                    />
+                                </td>
+                                <td className="border-r border-black px-4 h-7 w-[100px]">
+                                    <input
+                                        type="text"
+                                        value={row.jumlah}
+                                        onChange={(e) => handleChange(index, "jumlah", e.target.value)}
+                                        className="w-full px-2 h-full rounded text-center"
+                                    />
+                                </td>
+                                <td className="border-r border-black px-4 h-7">
+                                    <input
+                                        type="text"
+                                        value={row.harga}
+                                        onChange={(e) => handleChange(index, "harga", e.target.value)}
+                                        className="w-full px-2 h-full rounded text-center"
+                                    />
+                                </td>
+                                <td className="px-4 h-7">
+                                    <input
+                                        type="text"
+                                        value={row.total}
+                                        readOnly
+                                        className="w-full px-2 h-full rounded text-center"
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+
+                    <tfoot>
+                        <tr className="h-4">
+                            <td
+                                colSpan="5"
+                                className="border border-black px-4 py-2 h-9 text-center font-semibold pb-4"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
                             </td>
                         </tr>
-                    ))}
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td
-                            colSpan="5"
-                            className="border border-gray-300 px-4 py-2 h-9 text-center font-semibold"
-                        >
-                            Grand Total : Rp. <span>{calculateGrandTotal()}</span>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            <button
-                onClick={addRow}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf"
-            >
-                Tambah Baris
-            </button>
-        </div>
+                    </tfoot>
+                </table>
+                <button
+                    onClick={addRow}
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf"
+                >
+                    Tambah Baris
+                </button>
+            </div>
+        </>
     );
 }
 
@@ -147,50 +171,51 @@ function NotaJasa({ setJasaData }) {
     };
 
     return (
-        <div className="pb-12">
-            <table className="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100 text-left">
-                        <th className="border border-gray-300 px-2 py-2 h-12 w-[2px]">No</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[500px]">Jasa</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Harga</th>
-                        <th className="border border-gray-300 px-4 py-2 h-12 w-[200px]">Total</th>
+        <div className="pb-6">
+            <table className="w-full border-collapse border border-black">
+                <thead className="my-auto">
+                    <tr className="bg-gray-100 h-6">
+                        <th className="border border-black px-2 w-[30px] pb-3">No</th>
+                        <th className="border border-black px-4 w-[400px] text-left pb-3">Jasa</th>
+                        <th className="border border-black px-4 w-[200px] text-center pb-3">Harga</th>
+                        <th className="border border-black px-4 w-[200px] text-center pb-3">Total</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {data.map((row, index) => (
                         <tr key={index} className="hover:bg-gray-50">
-                            <td className="border border-gray-300 px-2 py-2 h-9">
+                            <td className="border-r border-black px-2 h-7">
                                 <input
                                     type="text"
                                     value={row.no}
                                     onChange={(e) => handleChange(index, "no", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded text-center"
+                                    className="w-full h-full rounded text-center"
                                     disabled
                                 />
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9 w-[250px]">
+                            <td className="border-r border-black px-2 h-7 w-[250px] border-b-0">
                                 <input
                                     type="text"
                                     value={row.jasa}
                                     onChange={(e) => handleChange(index, "jasa", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded"
+                                    className="w-full px-2 h-full rounded"
                                 />
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9 w-[100px]">
+                            <td className="border-r border-black px-4 h-7 w-[100px]">
                                 <input
                                     type="text"
                                     value={row.harga}
                                     onChange={(e) => handleChange(index, "harga", e.target.value)}
-                                    className="w-full px-2 py-1 h-12 rounded text-center"
+                                    className="w-full px-2 h-full rounded text-center"
                                 />
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 h-9">
+                            <td className="px-4 h-7">
                                 <input
                                     type="text"
                                     value={row.total}
                                     readOnly
-                                    className="w-full px-2 py-1 h-12 rounded"
+                                    className="w-full px-2 h-full rounded text-center"
                                 />
                             </td>
                         </tr>
@@ -198,22 +223,27 @@ function NotaJasa({ setJasaData }) {
                 </tbody>
 
                 <tfoot>
-                    <tr>
+                    <tr className="h-4">
                         <td
-                            colSpan="4"
-                            className="border border-gray-300 px-4 py-2 h-9 text-center font-semibold"
-                        >
-                            Grand Total : Rp. <span>{calculateGrandTotal()}</span>
+                        colSpan="5"
+                        className="border border-black px-4 py-2 h-9 text-center font-semibold pb-4"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
                         </td>
                     </tr>
-                </tfoot>
+                    </tfoot>
             </table>
             <button
                 onClick={addRow}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf"
-            >
-                Tambah Baris
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf">Tambah Baris
             </button>
+
+            <div className="mt-6 border border-black rounded-lg px-3 py-1">
+                <h3 className="font-semibold mb-2">Catatan</h3>
+                <textarea
+                    className="w-full h-11 pr-2 pb-2  rounded-lg"
+                    placeholder="Masukkan catatan dengan batas karakter 80..."
+                    maxLength={80}
+                />
+            </div>
         </div>
     );
 }
@@ -243,8 +273,7 @@ export default function Total() {
             <NotaBarang setBarangData={setBarangData} />
             <NotaJasa setJasaData={setJasaData} />
 
-            <h3 className="font-semibold text-xl mb-4 mt-8">Pembayaran</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-b-2 pb-3 border-black">
                 <div>
                     <h3 className="font-semibold mb-2">Total Barang</h3>
                     <p>{totalBarang}</p>

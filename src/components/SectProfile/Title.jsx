@@ -2,10 +2,11 @@ import Paragraf from "../Text/Paragraf";
 
 export default function Title() {
     return(
-        <div className="px-7 pt-10">
+        <div className="px-7">
             <Paragraf 
-            text="DILLO - BANTUL"
+            text="BERLIAN TIGA"
             bold="font-bold"
+            textsize="text-xl"
             />
 
             <Paragraf 

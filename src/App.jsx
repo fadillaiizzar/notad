@@ -47,8 +47,8 @@ export default function App() {
   };
   
   return(
-    <div id="pageToExport" className="mb-10">
-      {/* <Logo /> */}
+    <div id="pageToExport" className="mb-10 text-sm">
+      <Logo />
       <Title />
       <DataCustomer />
       <Total />
