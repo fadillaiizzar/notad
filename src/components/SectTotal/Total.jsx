@@ -26,7 +26,7 @@ function NotaBarang({ setBarangData }) {
     };
 
     useEffect(() => {
-        setBarangData(data); // Send the data to Total component
+        setBarangData(data); 
     }, [data, setBarangData]);
 
     const calculateGrandTotal = () => {
@@ -73,7 +73,7 @@ function NotaBarang({ setBarangData }) {
                     <tbody>
                         {data.map((row, index) => (
                             <tr key={index}>
-                                <td className="border-r border-black px-2 h-7">
+                                <td className="border-r border-black px-2 h-8">
                                     <input
                                         type="text"
                                         value={row.no}
@@ -82,7 +82,7 @@ function NotaBarang({ setBarangData }) {
                                         disabled
                                     />
                                 </td>
-                                <td className="border-r border-black px-2 h-7 w-[250px] border-b-0">
+                                <td className="border-r border-black px-2 h-8 w-[250px] border-b-0">
                                     <input
                                         type="text"
                                         value={row.sparepart}
@@ -90,7 +90,7 @@ function NotaBarang({ setBarangData }) {
                                         className="w-full px-2 h-full rounded"
                                     />
                                 </td>
-                                <td className="border-r border-black px-4 h-7 w-[100px]">
+                                <td className="border-r border-black px-4 h-8 w-[100px]">
                                     <input
                                         type="text"
                                         value={row.jumlah}
@@ -98,7 +98,7 @@ function NotaBarang({ setBarangData }) {
                                         className="w-full px-2 h-full rounded text-center"
                                     />
                                 </td>
-                                <td className="border-r border-black px-4 h-7">
+                                <td className="border-r border-black px-4 h-8">
                                     <input
                                         type="text"
                                         value={row.harga}
@@ -106,7 +106,7 @@ function NotaBarang({ setBarangData }) {
                                         className="w-full px-2 h-full rounded text-center"
                                     />
                                 </td>
-                                <td className="px-4 h-7">
+                                <td className="px-4 h-8">
                                     <input
                                         type="text"
                                         value={row.total}
@@ -184,8 +184,8 @@ function NotaJasa({ setJasaData }) {
 
                 <tbody>
                     {data.map((row, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
-                            <td className="border-r border-black px-2 h-7">
+                        <tr key={index}>
+                            <td className="border-r border-black px-2 h-8">
                                 <input
                                     type="text"
                                     value={row.no}
@@ -194,7 +194,7 @@ function NotaJasa({ setJasaData }) {
                                     disabled
                                 />
                             </td>
-                            <td className="border-r border-black px-2 h-7 w-[250px] border-b-0">
+                            <td className="border-r border-black px-2 h-8 w-[250px] border-b-0">
                                 <input
                                     type="text"
                                     value={row.jasa}
@@ -202,7 +202,7 @@ function NotaJasa({ setJasaData }) {
                                     className="w-full px-2 h-full rounded"
                                 />
                             </td>
-                            <td className="border-r border-black px-4 h-7 w-[100px]">
+                            <td className="border-r border-black px-4 h-8 w-[100px]">
                                 <input
                                     type="text"
                                     value={row.harga}
@@ -210,7 +210,7 @@ function NotaJasa({ setJasaData }) {
                                     className="w-full px-2 h-full rounded text-center"
                                 />
                             </td>
-                            <td className="px-4 h-7">
+                            <td className="px-4 h-8">
                                 <input
                                     type="text"
                                     value={row.total}
@@ -236,10 +236,10 @@ function NotaJasa({ setJasaData }) {
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf">Tambah Baris
             </button>
 
-            <div className="mt-6 border border-black rounded-lg px-3 py-1">
+            <div className="mt-6 border border-black px-3 py-1">
                 <h3 className="font-semibold mb-2">Catatan</h3>
                 <textarea
-                    className="w-full h-11 pr-2 pb-2  rounded-lg"
+                    className="w-full h-11 pr-2 pb-2"
                     placeholder="Masukkan catatan dengan batas karakter 80..."
                     maxLength={80}
                 />
@@ -287,10 +287,31 @@ export default function Total() {
                     <p>{totalJasa}</p>
                 </div>
                 <div>
-                    <h3 className="font-semibold mb-2">Total Trans</h3>
+                    <h3 className="font-semibold mb-2">Total Transaksi</h3>
                     <p>Rp. <span>{totalTrans}</span></p>
                 </div>
             </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-6">
+                <div className="text-center">
+                    <h3 className="font-semibold">Customer</h3>
+                    <div className="mt-12 w-48 mx-auto"></div>
+                    <input
+                        type="text"
+                        placeholder="Nama Customer"
+                        className="mt-2 w-48 h-8 mx-auto text-center" />
+                </div>
+                
+                <div className="text-center">
+                    <h3 className="font-semibold">Admin</h3>
+                    <div className="mt-12 w-48 mx-auto"></div>
+                    <input
+                        type="text"
+                        placeholder="Nama Admin"
+                        className="mt-2 w-48 h-8 mx-auto text-center" />
+                </div>
+            </div>
+
         </div>
     );
 }

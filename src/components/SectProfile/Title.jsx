@@ -4,13 +4,13 @@ export default function Title() {
     return(
         <div className="px-7">
             <Paragraf 
-            text="BERLIAN TIGA"
+            text="BERLIANTIGA"
             bold="font-bold"
             textsize="text-xl"
             />
 
             <Paragraf 
-            text="Telp. 0123456789"
+            text="Telp. 081904019631"
             bold="font-semibold"
             />
         </div>

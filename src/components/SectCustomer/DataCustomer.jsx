@@ -1,6 +1,13 @@
 import TrTable from "./TrTable";
 
 export default function DataCustomer() {
+    // Ambil tanggal dan waktu hari ini
+    const today = new Date();
+    const date = today.toLocaleDateString('id-ID'); // Format tanggal sesuai dengan Indonesia
+    const time = today.toLocaleTimeString('id-ID'); // Format waktu sesuai dengan Indonesia
+
+    const fullDateTime = `${date} ${time}`; // Gabungkan tanggal dan waktu
+
     return (
         <>
             <style>
@@ -15,7 +22,7 @@ export default function DataCustomer() {
 
             <div className="px-7 mt-2 w-full pdf">
                 <div className="">
-                    <table className="w-full grid grid-cols-2 text-sm"> {/* Tambahkan text-sm */}
+                    <table className="w-full grid grid-cols-2 text-sm"> 
                         <TrTable 
                             text="KM Kendaraan"
                             defaultText=""
@@ -30,7 +37,7 @@ export default function DataCustomer() {
                         />
                         <TrTable 
                             text="Tanggal"
-                            defaultText=""
+                            defaultText={fullDateTime}  
                         />
                     </table>
                 </div>
