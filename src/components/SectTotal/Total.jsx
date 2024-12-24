@@ -58,7 +58,7 @@ function NotaBarang({ setBarangData }) {
                 `}
             </style>
 
-            <div className="pt-0 pb-6 pdf">
+            <div className="pt-0 pb-5 pdf">
                 <table className="w-full border-collapse border border-black">
                     <thead className="my-auto">
                         <tr className="bg-gray-100 h-6">
@@ -87,7 +87,7 @@ function NotaBarang({ setBarangData }) {
                                         type="text"
                                         value={row.sparepart}
                                         onChange={(e) => handleChange(index, "sparepart", e.target.value)}
-                                        className="w-full px-2 h-full rounded"
+                                        className="w-full h-full px-2 rounded"
                                     />
                                 </td>
                                 <td className="border-r border-black px-4 h-8 w-[100px]">
@@ -119,19 +119,17 @@ function NotaBarang({ setBarangData }) {
                     </tbody>
 
                     <tfoot>
-                        <tr className="h-4">
+                        <tr className="h-3">
                             <td
                                 colSpan="5"
-                                className="border border-black px-4 py-2 h-9 text-center font-semibold pb-4"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
+                                className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
                 <button
                     onClick={addRow}
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf"
-                >
-                    Tambah Baris
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf"> Tambah Baris
                 </button>
             </div>
         </>
@@ -171,7 +169,7 @@ function NotaJasa({ setJasaData }) {
     };
 
     return (
-        <div className="pb-6">
+        <div className="pb-5">
             <table className="w-full border-collapse border border-black">
                 <thead className="my-auto">
                     <tr className="bg-gray-100 h-6">
@@ -223,10 +221,10 @@ function NotaJasa({ setJasaData }) {
                 </tbody>
 
                 <tfoot>
-                    <tr className="h-4">
+                    <tr className="h-3">
                         <td
                         colSpan="5"
-                        className="border border-black px-4 py-2 h-9 text-center font-semibold pb-4"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
+                        className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
                         </td>
                     </tr>
                     </tfoot>
@@ -236,14 +234,24 @@ function NotaJasa({ setJasaData }) {
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf">Tambah Baris
             </button>
 
-            <div className="mt-6 border border-black px-3 py-1">
+            <div className="mt-5 border border-black px-3 py-1">
                 <h3 className="font-semibold mb-2">Catatan</h3>
                 <textarea
-                    className="w-full h-11 pr-2 pb-2"
-                    placeholder="Masukkan catatan dengan batas karakter 80..."
+                    className="w-full h-8 pr-2 pb-1"
+                    placeholder="Masukkan catatan dengan batas karakter 70..."
                     maxLength={80}
                 />
             </div>
+
+            {/* <div className="mt-5 border border-black px-3 py-1 flex">
+                <h3 className="font-semibold mb-2 pr-2">Catatan</h3>
+                <p className="pr-2"> : </p>
+                <textarea
+                    className="w-full h-8 pr-2 pb-0"
+                    placeholder="Masukkan catatan dengan batas karakter 80..."
+                    maxLength={80}
+                />
+            </div> */}
         </div>
     );
 }
@@ -273,18 +281,10 @@ export default function Total() {
             <NotaBarang setBarangData={setBarangData} />
             <NotaJasa setJasaData={setJasaData} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-b-2 pb-3 border-black">
-                <div>
-                    <h3 className="font-semibold mb-2">Total Barang</h3>
-                    <p>{totalBarang}</p>
-                </div>
+            <div className="grid grid-cols-2 border-b pb-4 border-black">
                 <div>
                     <h3 className="font-semibold mb-2">Total Item</h3>
                     <p>{totalItem}</p>
-                </div>
-                <div>
-                    <h3 className="font-semibold mb-2">Total Jasa</h3>
-                    <p>{totalJasa}</p>
                 </div>
                 <div>
                     <h3 className="font-semibold mb-2">Total Transaksi</h3>
@@ -292,10 +292,10 @@ export default function Total() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-6">
+            <div className="grid grid-cols-2 gap-4 pt-3">
                 <div className="text-center">
                     <h3 className="font-semibold">Customer</h3>
-                    <div className="mt-12 w-48 mx-auto"></div>
+                    <div className="mt-10 w-48 mx-auto"></div>
                     <input
                         type="text"
                         placeholder="Nama Customer"
@@ -304,7 +304,7 @@ export default function Total() {
                 
                 <div className="text-center">
                     <h3 className="font-semibold">Admin</h3>
-                    <div className="mt-12 w-48 mx-auto"></div>
+                    <div className="mt-10 w-48 mx-auto"></div>
                     <input
                         type="text"
                         placeholder="Nama Admin"

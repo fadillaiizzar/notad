@@ -20,7 +20,7 @@ export default function DataCustomer() {
                 `}
             </style>
 
-            <div className="px-7 mt-2 w-full pdf">
+            <div className="px-7 mt-0 w-full pdf">
                 <div className="">
                     <table className="w-full grid grid-cols-2 text-sm"> 
                         <TrTable 
