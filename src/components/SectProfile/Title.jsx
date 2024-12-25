@@ -4,9 +4,9 @@ export default function Title() {
     return(
         <div className="px-7">
             <Paragraf 
-            text="BERLIANTIGA"
+            text="Jl Rajawali Priyan Trirenggo Bantul 55714"
             bold="font-bold"
-            textsize="text-xl"
+            textsize="text-md"
             />
 
             <Paragraf 

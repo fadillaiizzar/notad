@@ -58,15 +58,16 @@ function NotaBarang({ setBarangData }) {
                 `}
             </style>
 
-            <div className="pt-0 pb-5 pdf">
+            <div className="pt-0 pb-1 pdf">
+                <h2 className="font-bold text-md mb-3">BIAYA SPARE PART</h2>
                 <table className="w-full border-collapse border border-black">
                     <thead className="my-auto">
-                        <tr className="bg-gray-100 h-6">
+                        <tr className="h-6">
                             <th className="border border-black px-2 w-[30px] pb-3">No</th>
-                            <th className="border border-black px-4 w-[400px] text-left pb-3">Sparepart</th>
-                            <th className="border border-black px-4 w-[100px] text-center pb-3">Jumlah</th>
+                            <th className="border border-black px-4 w-[400px] text-center pb-3">Spare Part</th>
+                            <th className="border border-black px-4 w-[100px] text-center pb-3">Qty</th>
                             <th className="border border-black px-4 w-[200px] text-center pb-3">Harga</th>
-                            <th className="border border-black px-4 w-[200px] text-center pb-3">Total</th>
+                            <th className="border border-black px-4 w-[200px] text-center pb-3">Jumlah</th>
                         </tr>
                     </thead>
 
@@ -122,7 +123,7 @@ function NotaBarang({ setBarangData }) {
                         <tr className="h-3">
                             <td
                                 colSpan="5"
-                                className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
+                                className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Total : Rp. <span>{calculateGrandTotal()}</span>
                             </td>
                         </tr>
                     </tfoot>
@@ -169,14 +170,15 @@ function NotaJasa({ setJasaData }) {
     };
 
     return (
-        <div className="pb-5">
+        <div className="pt-0 pb-1">
+            <h2 className="font-bold text-md mb-3">BIAYA JASA</h2>
+
             <table className="w-full border-collapse border border-black">
                 <thead className="my-auto">
-                    <tr className="bg-gray-100 h-6">
-                        <th className="border border-black px-2 w-[30px] pb-3">No</th>
-                        <th className="border border-black px-4 w-[400px] text-left pb-3">Jasa</th>
-                        <th className="border border-black px-4 w-[200px] text-center pb-3">Harga</th>
-                        <th className="border border-black px-4 w-[200px] text-center pb-3">Total</th>
+                    <tr className="h-6">
+                        <th className="border border-black px-2 w-[30px] pb-3 text-center">No</th>
+                        <th className="border border-black px-4 w-[400px] text-center pb-3">Jasa</th>
+                        <th className="border border-black px-4 w-[200px] text-center pb-3">Biaya</th>
                     </tr>
                 </thead>
 
@@ -208,14 +210,6 @@ function NotaJasa({ setJasaData }) {
                                     className="w-full px-2 h-full rounded text-center"
                                 />
                             </td>
-                            <td className="px-4 h-8">
-                                <input
-                                    type="text"
-                                    value={row.total}
-                                    readOnly
-                                    className="w-full px-2 h-full rounded text-center"
-                                />
-                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -224,17 +218,83 @@ function NotaJasa({ setJasaData }) {
                     <tr className="h-3">
                         <td
                         colSpan="5"
-                        className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Grand Total : Rp. <span>{calculateGrandTotal()}</span>
+                        className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Total : Rp. <span>{calculateGrandTotal()}</span>
                         </td>
                     </tr>
-                    </tfoot>
+                </tfoot>
             </table>
             <button
                 onClick={addRow}
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 hide-on-pdf">Tambah Baris
             </button>
+        </div>
+    );
+}
 
-            <div className="mt-5 border border-black px-3 py-1">
+function BarangJasa() {
+    const [barangData, setBarangData] = useState([]);
+    const [jasaData, setJasaData] = useState([]);
+    const [data, setData] = useState([
+        { no: "1", keterangan: "Biaya Spare Part", biaya: 0 },
+        { no: "2", keterangan: "Biaya Jasa", biaya: 0 },
+    ]);
+
+    const calculateGrandTotalBarang = () => {
+        return barangData.reduce((acc, row) => acc + (parseInt(row.total) || 0), 0);
+    };
+
+    const calculateGrandTotalJasa = () => {
+        return jasaData.reduce((acc, row) => acc + (parseInt(row.total) || 0), 0);
+    };
+
+    useEffect(() => {
+        const updatedData = [...data];
+        updatedData[0].biaya = calculateGrandTotalBarang();
+        updatedData[1].biaya = calculateGrandTotalJasa();
+        setData(updatedData);
+    }, [barangData, jasaData]);
+
+    const calculateTotalBiaya = () => {
+        return data.reduce((acc, row) => acc + row.biaya, 0);
+    };
+
+    return (
+        <div className="pb-1">
+            <div className="mt-0">
+                <NotaBarang setBarangData={setBarangData} />
+                <NotaJasa setJasaData={setJasaData} />
+            </div>
+
+            <h2 className="font-bold text-md mb-3">JUMLAH TOTAL BIAYA</h2>
+            <table className="w-full border-collapse border border-black">
+                <thead className="my-auto">
+                    <tr className="h-6">
+                        <th className="border border-black px-2 w-[30px] pb-3">No</th>
+                        <th className="border border-black px-4 w-[400px] text-center pb-3">Keterangan</th>
+                        <th className="border border-black px-4 w-[200px] text-center pb-3">Biaya</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {data.map((row, index) => (
+                        <tr key={index}>
+                            <td className="border-r border-black px-2 h-8 text-center">{row.no}</td>
+                            <td className="border-r border-black px-2 h-8 w-[250px] border-b-0">{row.keterangan}</td>
+                            <td className="border-r border-black px-4 h-8 w-[100px] text-center">{row.biaya}</td>
+                        </tr>
+                    ))}
+                </tbody>
+                <tfoot>
+                    <tr className="h-3">
+                        <td
+                            colSpan="3"
+                            className="border border-black px-4 py-2 h-9 text-center font-semibold pb-3"> Jumlah Total : Rp. {calculateTotalBiaya()}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div className="mt-3 border border-black px-3 py-1">
                 <h3 className="font-semibold mb-2">Catatan</h3>
                 <textarea
                     className="w-full h-8 pr-2 pb-1"
@@ -242,16 +302,6 @@ function NotaJasa({ setJasaData }) {
                     maxLength={80}
                 />
             </div>
-
-            {/* <div className="mt-5 border border-black px-3 py-1 flex">
-                <h3 className="font-semibold mb-2 pr-2">Catatan</h3>
-                <p className="pr-2"> : </p>
-                <textarea
-                    className="w-full h-8 pr-2 pb-0"
-                    placeholder="Masukkan catatan dengan batas karakter 80..."
-                    maxLength={80}
-                />
-            </div> */}
         </div>
     );
 }
@@ -277,20 +327,8 @@ export default function Total() {
     const totalTrans = grandTotalBarang + grandTotalJasa;
 
     return (
-        <div className="p-4 mx-3">
-            <NotaBarang setBarangData={setBarangData} />
-            <NotaJasa setJasaData={setJasaData} />
-
-            <div className="grid grid-cols-2 border-b pb-4 border-black">
-                <div>
-                    <h3 className="font-semibold mb-2">Total Item</h3>
-                    <p>{totalItem}</p>
-                </div>
-                <div>
-                    <h3 className="font-semibold mb-2">Total Transaksi</h3>
-                    <p>Rp. <span>{totalTrans}</span></p>
-                </div>
-            </div>
+        <div className="p-4 pt-0 mx-3">
+            <BarangJasa />
 
             <div className="grid grid-cols-2 gap-4 pt-3">
                 <div className="text-center">

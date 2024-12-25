@@ -28,7 +28,7 @@ export default function DataCustomer() {
                             defaultText=""
                         />
                         <TrTable 
-                            text="Customer"
+                            text="Jenis Kendaraan"
                             defaultText=""
                         />
                         <TrTable 

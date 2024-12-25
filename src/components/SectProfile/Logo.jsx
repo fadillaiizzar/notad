@@ -4,7 +4,6 @@ export default function Logo() {
             <div className="w-72">
                 <img src="/berliantiga.png" className="w-full h-full object-cover rounded-lg" alt="logo"/>
             </div>
-            <p className="text-[6px]">notaservice</p>
         </div>
     );
 }

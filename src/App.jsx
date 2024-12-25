@@ -50,6 +50,7 @@ export default function App() {
   return(
     <div id="pageToExport" className="mb-10 text-sm relative">
       <Logo />
+      <Title />
       <DataCustomer />
       <Total />
       <Button downloadPDF={downloadPDF} />
