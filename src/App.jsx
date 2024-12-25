@@ -53,6 +53,10 @@ export default function App() {
       <DataCustomer />
       <Total />
       <Button downloadPDF={downloadPDF} />
+
+      <div className="absolute inset-0 flex items-center justify-center text-[200px] font-bold text-gray-500 opacity-15 pointer-events-none top-1/2 left-0 transform -translate-y-1/2 -rotate-[15deg]">
+        ASLI
+      </div>       
     </div>
   );
 }
