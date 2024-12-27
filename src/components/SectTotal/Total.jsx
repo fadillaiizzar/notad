@@ -83,7 +83,7 @@ function NotaBarang({ setBarangData }) {
                                         disabled
                                     />
                                 </td>
-                                <td className="border-r border-black px-2 h-8 w-[250px] border-b-0">
+                                <td className="border-r border-black h-8 w-[250px] border-b-0">
                                     <input
                                         type="text"
                                         value={row.sparepart}
@@ -194,7 +194,7 @@ function NotaJasa({ setJasaData }) {
                                     disabled
                                 />
                             </td>
-                            <td className="border-r border-black px-2 h-8 w-[250px] border-b-0">
+                            <td className="border-r border-black h-8 w-[250px] border-b-0">
                                 <input
                                     type="text"
                                     value={row.jasa}
